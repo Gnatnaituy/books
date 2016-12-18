@@ -12,7 +12,7 @@ def good_enough(guess, x):
         return False
 
 def sqrt_iter(guess, x):
-    if good_enough(guess, x):
+    if good_enough(guess, x): 
         return guess
     else:
         sqrt_iter(improve(guess, x), x)
