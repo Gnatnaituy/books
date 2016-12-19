@@ -1,50 +1,45 @@
-#ifdef _List_H
+#include "Linked_List.h"
+#include <stdlib.h>
 
-struct Node;
-typedef struct Node *PtrToNode;
-typedef PtrToNode List;
-typedef PtrToNode Position;
-
-List MakeEmpty(List L);
-int isEmpty(List L);
-int isLast(Position P, List L);
-Position Find(ElementType X, List L);
-void Delete(ElementType X, List L);
-Position FindPrevious(ElementType X, List L);
-void Insert(ElementType X, List L, Position P);
-void DeleteList(List L);
-Position Header(List L);
-Position First(List L);
-Position Advance(Position P);
-ElementType Retrieve(Position);
-
-#endif
-
+// Place in the interface file
 struct Node
 {
     ElementType Element;
     Position    Next;
 };
 
+List MakeEmpty(List L)
+{
+    if(L != NULL)
+        DeleteList(L);
+    L = malloc(sizeof(struct Node));
+    if(L == NULL)
+        printf("List is NULL\n");
+    L->Next = NULL;
+    return L;
+}
+
+// Return Ture if L is empty
 int isEmpty(List L)
 {
     return L->Next == NULL;
 }
 
-
-int isLast(List L)
+// return ture if P is in the last position of L
+// Paramater is not used in this implementation
+int isLast(Position P, List L)
 {
     return P->Next == NULL;
 }
 
-
+// Return Position of X in L, NULL if not found
 Position Find(ElementType X, List L)
 {
     Position P;
 
     P = L->Next;
     while(P != NULL && P->Element != X)
-        P = P->Next
+        P = P->Next;
 
     return P;
 }
@@ -68,7 +63,7 @@ void Delete(ElementType X, List L)
     Position P, TmpCell;
 
     P = FindPrevious(X, L);
-    
+
     if(!isLast(P, L))
     {
         TmpCell = P->Next;
@@ -84,11 +79,11 @@ void Insert(ElementType X, List L, Position P)
 
     TmpCell = malloc(sizeof(struct Node));
     if(TmpCell == NULL)
-        FataError("Out of space!!!");
+        printf("List is NULL\n");
 
     TmpCell->Element = X;
     TmpCell->Next = P->Next;
-    P->next = TmpCell;
+    P->Next = TmpCell;
 }
 
 
@@ -96,9 +91,9 @@ void DeleteList(List L)
 {
     Position P, Tmp;
 
-    p = L->Next;  //Header assumed
+    P = L->Next;  //Header assumed
     L->Next = NULL;
-    while(p != NULL)
+    while(P != NULL)
     {
         Tmp = P->Next;
         free(P);
@@ -106,9 +101,3 @@ void DeleteList(List L)
     }
 }
 
-
-int main()
-{
-    L = {1,2,3,4,5,6,7,8,9};
-    printf(isEmpty(L));
-}

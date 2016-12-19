@@ -3,11 +3,11 @@
 #星号表达式
 def Drop_First_Last(grades):
 	first, *middle, last = grades
-	return middle 
+	return middle
 
 grades = ('123','99','125','145','90','122')
-print(Drop_First_Last(grades)) 
-# middle = ['99','125','145','90'] 
+print(Drop_First_Last(grades))
+# middle = ['99','125','145','90']
 # middle永远为列表类型
 
 def Sum(items):
@@ -29,12 +29,3 @@ def search(lines, pattern, history=5):
 		if pattern in li:
 			yield li, previous_lines
 		previous_lines.append(li)
-
-# Example use on a file
-if __name__ == '__main__':
-    with open(r'../../cookbook/somefile.txt') as f:
-		        for line, prevlines in search(f, 'python', 5):
-						            for pline in prevlines:
-												                print(pline, end='')
-																				            print(line, end='')
-																										            print('-' * 20)
