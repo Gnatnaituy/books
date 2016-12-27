@@ -22,4 +22,5 @@ int main()
     finish = clock();
     duration = (double)(finish - start) / CLOCKS_PER_SEC;
     printf("%f seconds.", duration);
+    printf("\n");
 }

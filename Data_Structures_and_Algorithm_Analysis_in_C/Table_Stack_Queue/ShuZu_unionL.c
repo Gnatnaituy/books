@@ -81,10 +81,7 @@ int ListDelete(SqList *L, int i, int *e)
 {
     int k;
 
-    if(L->length == 0 || i < 1 || i > L->length)  //线性表为空
-
-
-        或i不在范围内
+    if(L->length == 0 || i < 1 || i > L->length)  //线性表为空或i不在范围内
     {
         return 0;
     }
