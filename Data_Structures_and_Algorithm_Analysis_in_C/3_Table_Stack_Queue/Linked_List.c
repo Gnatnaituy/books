@@ -1,12 +1,29 @@
 #include "Linked_List.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-// Place in the interface file
-struct Node
+
+typedef struct Node
 {
-    ElementType Element;
-    Position    Next;
-};
+    ElementType Element; // 存储的数据
+    Position    Next;  // 下一个Node的地址
+} Node;
+
+
+List CreateList(void)
+{
+    PtrToNode L;
+    L = malloc(sizeof(struct Node));
+    if(L == NULL)
+    {
+        printf("out of space");
+        return 0;
+    }
+    L->Next = NULL;
+    
+    return L;   
+}
+
 
 List MakeEmpty(List L)
 {
@@ -19,20 +36,19 @@ List MakeEmpty(List L)
     return L;
 }
 
-// Return Ture if L is empty
-int isEmpty(List L)
+
+Status isEmpty(List L)
 {
     return L->Next == NULL;
 }
 
-// return ture if P is in the last position of L
-// Paramater is not used in this implementation
-int isLast(Position P, List L)
+
+Status isLast(Position P, List L)
 {
     return P->Next == NULL;
 }
 
-// Return Position of X in L, NULL if not found
+
 Position Find(ElementType X, List L)
 {
     Position P;
@@ -57,7 +73,6 @@ Position FindPrevious(ElementType X, List L)
 }
 
 
-// 链表的删除例程
 void Delete(ElementType X, List L)
 {
     Position P, TmpCell;
@@ -86,6 +101,17 @@ void Insert(ElementType X, List L, Position P)
     P->Next = TmpCell;
 }
 
+void PrintList(List L)
+{
+    Position p;
+    p = L;
+    while( p->Next != NULL)
+    {
+        printf( "%d", p->Next->Element );
+        p = p->Next;
+    }
+    printf("\n");
+}
 
 void DeleteList(List L)
 {
