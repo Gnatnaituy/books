@@ -1,5 +1,5 @@
-#ifndef Linked_List_H
-#define Linked_List_H
+#ifndef Singlely_Linked_List_H
+#define Singlely_Linked_List_H
 
 struct Node; //Node结构体变量声明
 typedef struct Node *PtrToNode; //typedef定义新的类,名字叫做PtrToNode,类型是指向Node结构体的指针

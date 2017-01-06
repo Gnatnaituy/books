@@ -1,31 +1,32 @@
-#include "Singlely_Circular_Linked_LIst.h"
-#include <stdio.h>
+#include "Doubly_Linked_List.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 
 pNode CreateList()
 {
     int i, length = 0, data = 0;
-    pNode pTail = NULL, p_new = NULL;
+    pNode pNext = NULL, pPrevious = NULL, pTail = NULL, p_new = NULL;
     pNode pHead = (pNode)malloc(sizeof(Node));
     if(pHead == NULL)
     {
-        printf("内存分配失败!\n");
+        printf("内存申请失败!\n");
         exit(EXIT_FAILURE);
-    }       
+    }
+    pHead->pNext = NULL;
+    pHead->pPrevious = NULL;
     pHead->Data = 0;
-    pHead->pNext = pHead;
     pTail = pHead;
 
     printf("请输入要创建链表的长度: ");
     scanf("%d", &length);
 
-    for(i=1; i<length+1; i++)
+    for(i = 1; i < length + 1; i++)
     {
         p_new = (pNode)malloc(sizeof(Node));
         if(p_new == NULL)
         {
-            printf("内存分配失败!\n");
+            printf("内存申请失败!\n");
             exit(EXIT_FAILURE);
         }
 
@@ -33,7 +34,8 @@ pNode CreateList()
         scanf("%d", &data);
 
         p_new->Data = data;
-        p_new->pNext = pHead;
+        p_new->pPrevious = pTail;
+        p_new->pNext = NULL;
         pTail->pNext = p_new;
         pTail = p_new;
     }
@@ -44,7 +46,7 @@ void PrintList(pNode pHead)
 {
     pNode pTmp = pHead->pNext;
     printf("此时的链表: ");
-    while(pTmp != pHead)
+    while(pTmp != NULL)
     {
         printf(">%d>", pTmp->Data);
         pTmp = pTmp->pNext;
@@ -54,7 +56,7 @@ void PrintList(pNode pHead)
 
 void isEmpty(pNode pHead)
 {
-    if(pHead->pNext == pHead)
+    if(pHead->pNext == NULL)
         printf("链表为空\n");
     else
         printf("链表不为空\n");
@@ -64,8 +66,8 @@ void isEmpty(pNode pHead)
 int ListLength(pNode pHead)
 {
     int length = 0;
-    pNode pTmp = pHead->pNext;
-    while(pTmp != pHead)
+    pNode pTmp = pHead;
+    while(pTmp->pNext != NULL)
     {
         length++;
         pTmp = pTmp->pNext;
@@ -75,7 +77,7 @@ int ListLength(pNode pHead)
 
 void InsertNode(pNode pHead, int position, int data)
 {
-    if(position > 0 && position < ListLength(pHead) + 1)
+    if(position > 0 && position < ListLength(pHead) + 2)
     {
         pNode p_new = NULL;
         p_new = (pNode)malloc(sizeof(Node));
@@ -92,6 +94,7 @@ void InsertNode(pNode pHead, int position, int data)
             pHead = pHead->pNext;
         }
         p_new->Data = data;
+        p_new->pPrevious = pHead;
         p_new->pNext = pHead->pNext;
         pHead->pNext = p_new;
 
@@ -104,9 +107,9 @@ void InsertNode(pNode pHead, int position, int data)
 
 void DeleteNode(pNode pHead, int position)
 {
-    pNode pTmp = NULL;
-    if(position > 0 && position < ListLength(pHead))
+    if(position > 0 && position < ListLength(pHead) + 1)
     {
+        pNode pTmp = NULL;
         while(1)
         {
             position--;
@@ -117,32 +120,32 @@ void DeleteNode(pNode pHead, int position)
         pTmp = pHead->pNext->pNext;
         free(pHead->pNext);
         pHead->pNext = pTmp;
-
-        printf("删除成功！\n");
+        printf("释放成功!\n");
     }
     else
-        printf("超出链表位置！\n");
+        printf("超出链表长度!\n");
     return ;
 }
 
-void DeleteList(pNode *ppHead)
+void DeleteList(pNode pHead)
 {
-    pNode pTmp= NULL;
-    while(*ppHead != NULL)
+    if(pHead->pNext == NULL)
     {
-        if(*ppHead == (*ppHead)->pNext) // 如果只有一个节点
-        {
-            free(*ppHead);
-            *ppHead = NULL;
-        }
-        else
-        {
-            pTmp = (*ppHead)->pNext->pNext;
-            free((*ppHead)->pNext);
-            (*ppHead)->pNext = pTmp;
-        }
+        free(pHead);
+        printf("释放链表成功!\n");
     }
-    printf("释放链表成功!\n");
+    else
+    {
+        pNode pTmp = NULL;
+        while(pHead->pNext != NULL)
+        {
+            pTmp = pHead->pNext;
+            free(pHead);
+            pHead = pTmp;
+        }
+        printf("释放链表成功!\n");
+    }
+    return ;
 }
 
 int main()
@@ -167,7 +170,7 @@ int main()
     DeleteNode(List, position);
     PrintList(List);
 
-    DeleteList(&List);
+    DeleteList(List);
 
     return 0;
 }

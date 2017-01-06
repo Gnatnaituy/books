@@ -1,4 +1,12 @@
-# Reading_by_Coding
-**数据结构与算法分析**
-**计算机程序的构造和解释**
-**浪潮之巅**
+# Reading by Coding
+### 500 Lines or Less
+- Python interpretor by Python
+
+### Data Structure and Algorithm Analysis in C
+##### Chapter 3
+- Linked list
+- Stack
+
+### Python CookBook
+
+### Structure and Interpretation of Computer Programs
