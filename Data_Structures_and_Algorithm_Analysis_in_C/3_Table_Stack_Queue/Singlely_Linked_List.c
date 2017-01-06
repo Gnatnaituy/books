@@ -3,13 +3,6 @@
 #include <stdio.h>
 
 
-typedef struct Node
-{
-    ElementType Element; // 存储的数据
-    Position    Next;  // 下一个Node的地址
-} Node;
-
-
 List CreateList(void)
 {
     PtrToNode L;
@@ -107,7 +100,7 @@ void PrintList(List L)
     p = L;
     while( p->Next != NULL)
     {
-        printf( "%d", p->Next->Element );
+        printf( "%c", p->Next->Element );
         p = p->Next;
     }
     printf("\n");
@@ -127,3 +120,27 @@ void DeleteList(List L)
     }
 }
 
+int main()
+{
+    List L;
+    Position p;
+    char c, d;
+    int q;
+    L = CreateList();
+    printf("是否为空: %d\n", isEmpty(L));
+    
+    p = L;
+    printf("请输入二进制数，按#号键结束：\n");
+    scanf("%c", &c);
+    while(c != '#')
+    {
+        Insert(c, L, p);
+        p = p->Next;
+        scanf("%c", &c);
+    }
+    getchar();
+    printf("当前链表为: ");
+    PrintList(L);
+
+    return 0;
+}

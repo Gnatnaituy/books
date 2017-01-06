@@ -40,7 +40,8 @@ Position CreateTable(void)
 int main()
 {
     int i;
-    Position L,p;
+    List L;
+    Position p;
     PtrToNode TmpCell;
     L = CreateTable();
     p = L;

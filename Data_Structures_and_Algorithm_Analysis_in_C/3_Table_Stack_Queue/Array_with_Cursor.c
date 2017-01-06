@@ -1,16 +1,8 @@
-#include "Linked_List_Cursor.h"
+#include "Array_with_Cursor.h"
 #include <stdlib.h>
 
-//Palce in the implememtation file
-struct Node
-{
-    ElementType Element;
-    Position    Next;
-};
-struct Node CursorSpace[ SpaceSize ];
 
-
-static Position CursorAlloc( void )
+static Position CursorAllocate( void )
 {
     Position P;
 
@@ -39,9 +31,9 @@ List MakeEmpty( List L)
 {
     if( L != NULL)
         DeleteList( L );
-    L = CursorAlloc();
+    L = CursorAllocate();
     if ( L = 0 )
-        Error("Out of memory!");
+        printf("Out of memory!");
     CursorSpace[L].Next = 0;
     return L;
 }
@@ -53,7 +45,7 @@ int isEmpty( List L )
 }
 
 //Return P is the last position in list L
-int isLast( Position P, Lint L )
+int isLast( Position P, int L )
 {
     return CursorSpace[P].Next == 0;
 }
@@ -64,7 +56,7 @@ Position Find( ElementType X, List L)
 {
     Position P;
     P = CursorSpace[P].Next;
-    while( P && CursorSpace[p].Element != X)
+    while( P && CursorSpace[P].Element != X)
         P = CursorSpace[P].Next;
     return P;
 }
@@ -98,9 +90,9 @@ Position FindPrevious( ElementType X, List L )
 void Insert( ElementType X, List L, Position P )
 {
     Position TmpCell;
-    TmpCell = CursorAlloc();
+    TmpCell = CursorAllocate();
     if(TmpCell == 0)
-        Error("Out of Space!");
+        printf("Out of Space!");
     CursorSpace[TmpCell].Element = X;
     CursorSpace[TmpCell].Next = CursorSpace[P].Next;
     CursorSpace[P].Next = TmpCell;
@@ -112,7 +104,7 @@ void DeleteList( List L )
     Position P, Tmp;
     P = CursorSpace[L].Next;  //header assumed
     CursorSpace[L].Next = 0;
-    while( P != )
+    while( P != NULL)
     {
         Tmp = CursorSpace[P].Next;
         CursorSpace(P);

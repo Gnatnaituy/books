@@ -1,8 +1,11 @@
-#ifndef _Linked_List_Cursor_H
+#ifndef Array_with_Cursor_H
+#define Array_with_Cursor_H
+#define SpaceSize=20
 
 typedef int PtrToNode;
 typedef PtrToNode List;
 typedef PtrToNode Position;
+typedef int ElementType;
 
 void InitializeCursorSpace( void );
 
@@ -19,4 +22,13 @@ void DeleteList( List L );
 void Insert( ElementType X, List L, Position P );
 ElementType Retrieve( const Position P );
 
-#endif  /* _Linked_List_Cursor_H */
+#endif
+
+
+//Palce in the implememtation file
+struct Node
+{
+    ElementType Element;
+    Position    Next;
+};
+struct Node CursorSpace[ SpaceSize ];
