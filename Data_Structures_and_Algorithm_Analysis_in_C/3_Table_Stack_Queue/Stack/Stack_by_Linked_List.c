@@ -1,4 +1,4 @@
-#include "Stack.h"
+#include "Stack_by_Linked_List.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,7 +12,7 @@ Stack CreateStack(void)
 {
 		Stack S;
 
-		S = malloc(sizeof(Stack));
+		S = (Stack)malloc(sizeof(Stack));
 		if(S == NULL)
 		{
 				printf("Failed to malloc.");

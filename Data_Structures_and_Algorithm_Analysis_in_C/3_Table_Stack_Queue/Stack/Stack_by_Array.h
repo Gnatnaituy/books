@@ -5,8 +5,10 @@ typedef struct StackRecord
 {
 		int Capacity;
 		int TopofStack;
-		struct StackRecord *Array;
+        int *Array;
 } *Stack;
+
+typedef int MaxElements;
 
 int isEmpty(Stack S);
 int isFull(Stack S);
