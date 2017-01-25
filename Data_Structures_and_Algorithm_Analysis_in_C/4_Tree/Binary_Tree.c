@@ -1,18 +1,23 @@
-// 每个节点不能有多余两个的儿子
-
 #include <stdlib.h>
 #include <stdio.h>
 
-
+typedef int EleType;
 struct TreeNode;
 typedef struct TreeNode *Position;
-typedef struct TreeNode *SearchTree; 
+typedef struct TreeNode *SearchTree;
+
+SearchTree MakeEmpty( SearchTree T );
+Position FindMin( SearchTree T );
+Position FinsMax( SearchTree T );
+SearchTree Insert( EleType X, SearchTree T );
+SearchTree Delete( EleType X, SearchTree T );
+
 
 struct TreeNode
 {
-    int Data;
-    SearchTree Left;
-    SearchTree Right;
+    EleType      Data;
+    SearchTree   Left;
+    SearchTree   Right;
 };
 
 
@@ -46,7 +51,7 @@ Position FindMax( SearchTree T )
     return T;
 }
 
-SearchTree Insert( int X, SearchTree T )
+SearchTree Insert( EleType X, SearchTree T )
 {
     if( T == NULL )
     {
@@ -54,7 +59,7 @@ SearchTree Insert( int X, SearchTree T )
         T = malloc( sizeof( struct TreeNode ) );
         if( T == NULL )
         {
-            printf("内存申请失败!!!\n!");
+            printf("Failed to malloc !!!\n!");
             exit(EXIT_FAILURE);
         }
         else
@@ -66,7 +71,7 @@ SearchTree Insert( int X, SearchTree T )
     else if( X < T->Data )
         T->Left = Insert( X, T->Left );
     else if( X > T->Data )
-        T->Right = Insert( X, T-> Right );
+        T->Right = Insert( X, T->Right );
     /* else X is in the tree already, we'll do nothing */
 
     return T;
@@ -76,14 +81,15 @@ int PrintTree( SearchTree T )
 {
     if( T == NULL )
     {
-        printf("内存申请失败!!!\n!");
-        exit(EXIT_FAILURE);
+        printf("Empty SearchTree !!!\n!");
     }
     else
     {
-        printf( T->Data );
+        printf( "%d", T->Data );
         if( T->Left != NULL )
             PrintTree( T->Left );
+        if( T->Right != NULL )
+            PrintTree( T->Right );
     }
 
     return 0;
