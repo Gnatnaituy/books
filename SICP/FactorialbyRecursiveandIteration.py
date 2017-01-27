@@ -1,4 +1,4 @@
-#By Recursive
+# By Recursive
 def factorial_recursivel(n):
     if(n == 1):
         return 1
@@ -7,7 +7,7 @@ def factorial_recursivel(n):
 print(factorial_recursivel(10))
 
 
-#By Iteration
+# By Iteration
 def factorial_iteration(n):
     def fact_iter(product, counter):
         if(counter > n):

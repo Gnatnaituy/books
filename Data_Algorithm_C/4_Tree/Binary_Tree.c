@@ -32,6 +32,18 @@ SearchTree MakeEmpty( SearchTree T )
     return NULL;
 }
 
+Position Find( EleType X, SearchTree T )
+{
+    if( T == NULL )
+        return NULL;
+    if( X < T->Data )
+        return Find( X, T->Left );
+    else if( X > T->Data )
+        return Find( X, T->Right );
+    else
+        return T;
+}
+
 Position FindMin( SearchTree T )
 {
     if( T == NULL )
@@ -73,6 +85,39 @@ SearchTree Insert( EleType X, SearchTree T )
     else if( X > T->Data )
         T->Right = Insert( X, T->Right );
     /* else X is in the tree already, we'll do nothing */
+
+    return T;
+}
+
+SearchTree Delete( EleType X, SearchTree T )
+{
+    Position TmpCell;
+
+    if( T == NULL )
+    {
+        printf("Not have a SearchTree !!! ");
+        exit(EXIT_FAILURE);
+    }
+    else if( X < T->Data )  // Go Left
+        T->Left = Delete( X, T->Left );
+    else if( X > T->Data ) // Go Right 
+        T->Right = Delete( X, T->Right );
+    else if( T->Left && T->Right )  // Two Children
+    {
+        // Replace with smallest in right subtree
+        TmpCell =  FindMin( T->Right );
+        T->Data = TmpCell->Data;
+        T->Right = Delete( T->Data, T->Right );
+    }
+    else
+    {
+        TmpCell = T;
+        if( T->Left == NULL )  // Also handles 0 children
+            T = T->Right;
+        else if( T->Right == NULL )
+            T = T->Left;
+        free( TmpCell );
+    }
 
     return T;
 }

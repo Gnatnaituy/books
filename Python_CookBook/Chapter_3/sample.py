@@ -78,6 +78,7 @@ print(now + timedelta(minutes = 30))
 weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
                     'Friday', 'Saturday', 'Sunday']
 
+
 def get_previous_by_day(dayname, start_date=None):
     if start_date is None:
         start_date = datetime.today()

@@ -34,7 +34,8 @@ result = db.restaurants.insert_one(
 
 cursor = db.restaurants.find()
 for document in cursor:
-	print(document)
+    print(document)
+
 
 cursorB = db.restaurants.find({"grades.grade": "B"})
 for document in cursorB:
