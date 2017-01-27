@@ -1,8 +1,5 @@
-# 交换法
-
-
 def select(alist):
-
+    # 交换法
     for i in range(0, len(alist)-1):
         min_element = alist[i]
         for j in range(i+1, len(alist)):
