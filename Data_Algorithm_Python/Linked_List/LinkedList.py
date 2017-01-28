@@ -39,7 +39,7 @@ def delete(element, linked_list):
                     i += 1
                 del linked_list[len(linked_list)-1]
 
-    print('Linked list after delete : ', linked_list)
+    print('Linked list after deleted : ', linked_list)
 
 
 if __name__ == '__main__':
