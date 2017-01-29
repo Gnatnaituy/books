@@ -57,3 +57,38 @@ class ArrayDeque:
 
     def delete_last(self):
         pass
+
+
+class Deque:
+
+    def __init__(self):
+        self.items = []
+
+    def add_front(self, item):
+        self.items.insert(0, item)
+
+    def add_rear(self, item):
+        self.items.append(item)
+
+    def remove_front(self):
+        return self.items.pop(0)
+
+    def remove_rear(self):
+        return self.items.pop()
+
+    def empty(self):
+        return self.size() == 0
+
+    def size(self):
+        return len(self.items)
+
+
+if __name__ == '__main__':
+
+    deque_example = Deque()
+    for i in range(10):
+        deque_example.add_front(i)
+    for i in range(11, 20):
+        deque_example.add_rear(i)
+    print(deque_example.size())
+    print(deque_example.items)

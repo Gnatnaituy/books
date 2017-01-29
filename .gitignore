@@ -1,5 +1,6 @@
 *.dSYM/
 *.o
+*.pyc
 *.gch
 *.out
 __pycache__
