@@ -144,11 +144,17 @@ class Tree:
                 yield other
         yield p
 
-    # ------------------------------inorder traversal-----------------------------------
+    # -----------------------------breadth-first traversal------------------------------
     def breadthfirst(self):
         """Generate a breadth-first iteration of the positions of the tree."""
         if not self.is_empty():
-            fringe = LinkedQueue()
+            fringe = LinkedQueue()              # Known positions not yet yield
+            fringe.enqueue(self.root())          # starting with the root
+            while not fringe.is_empty():
+                p = fringe.dequeue()              # removing from the front of the queue
+                yield p                                  # report this position
+                for c in self.children(p):
+                    fringe.enqueue(c)               # add children to back of the queue
 
 
 class BinaryTree(Tree):
@@ -178,6 +184,27 @@ class BinaryTree(Tree):
             yield self.left(p)
         if self.right(p) is not None:
             yield self.right(p)
+
+    # ----------------------------------inorder traversal--------------------------------------
+    def inorder(self):
+        """Generate an inorder iteration of positions in the tree."""
+        if not self.is_empty():
+            for p in self._subtree_inorder(self.root()):
+                yield p
+
+    def _subtree_inorder(self, p):
+        """Generate an inorder iteration of positions in subtree rooted at p."""
+        if self.left(p) is not None:            # if left child exists, traversal its subtree
+            for other in self._subtree_inorder(self.left(p)):
+                yield other
+        yield p                                       # visit p between its subtrees
+        if self.right(p) is not None:
+            for other in self._subtree_inorder(self.right(p)):
+                yield other
+
+    # override inherited version to make inorder the default
+    def positions(self):
+        return self.inorder()                    # make inorder the default
 
 
 class LinkedBinaryTree(BinaryTree):
@@ -251,7 +278,7 @@ class LinkedBinaryTree(BinaryTree):
             count += 1
         return count
 
-    def add_root(self, element):
+    def _add_root(self, element):
         """Place element element at the root of an
         empty tree and return new Position
 
@@ -335,4 +362,43 @@ class LinkedBinaryTree(BinaryTree):
             t2._root = None
             t2.size = 0
 
+
+# ----------------------------Applications of Tree Traversal----------------------------------
+def preorder_indent(tree, p, d):
+    """Print preorder representation of subtree of tree rooted at p at depth d."""
+    print(2 * d * '    ' + str(p.element()))        # use depth of indentation
+    for c in tree.children(p):
+        preorder_indent(tree, c, d+1)              # child depth is d+1
+
+
+def preorder_label(tree, p, d, path):
+    """Print labeled representation of subtree of tree rooted at p at depth d."""
+    label = '.'.join(str(j+1) for j in path)        # displayed labels are one-indexed
+    print(2 * d * '    ' + label, p.element())
+    path.append(0)                                      # path entries are zero-indexed
+    for c in tree.children(p):
+        preorder_label(tree, c, d+1, path)        # child depth is d+1
+        path[-1] += 1
+    path.pop()
+
+
+def parenthesize(tree, p):
+    """Print parenthesize representation of subtree of tree rooted at p."""
+    print(p.element(), end=' ')                  # use of end avoids trailing newline
+    if not tree.is_leaf(p):
+        first_time = True
+        for c in tree.children(p):
+            sep = ' (' if first_time else ', '      # determine proper separator
+            print(sep, end=' ')
+            first_time = False                        # any future passes will not be the first
+            parenthesize(tree, c)                   # recur on child
+        print(')', end=' ')                             # include closing parenthesis
+
+
+def disk_space(tree, p):
+    """Return total disk space for subtree of tree rooted at p."""
+    subtotal = p.element().space()              # space used at position p
+    for c in tree.children(p):
+        subtotal += disk_space(tree, c)
+    return subtotal
 
