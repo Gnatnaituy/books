@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from Data_Algorithm_Python.Tree.General_Tree import LinkedBinaryTree
+from .General_Tree import LinkedBinaryTree
 
 
 class ExpressionTree(LinkedBinaryTree):
@@ -15,7 +15,7 @@ class ExpressionTree(LinkedBinaryTree):
         and the expression tree will have that value at an isolate node.
 
         In  a three-parameter version, token should be an operator,
-        and eft and right should be existing Expression Tree instances
+        and eft and right should be existing Expression H_Tree instances
         that become the operands for the binary operator."""
 
         super().__init__()                               # LinkedBinaryTree initialization
@@ -67,7 +67,7 @@ class ExpressionTree(LinkedBinaryTree):
 
 
 def build_expression_tree(tokens):
-    """Return an Expression Tree based upon by a tokenized expression."""
+    """Return an Expression H_Tree based upon by a tokenized expression."""
     s = []
     for t in tokens:
         if t in '+-*/x':

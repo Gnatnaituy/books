@@ -2,48 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-class LinkedQueue:
-
-    class _Node:
-
-        def __init__(self, element, next_node):
-            self._element = element
-            self._next = next_node
-
-    def __init__(self):
-        self._head = None
-        self._tail = None
-        self._size = 0
-
-    def __len__(self):
-        return self._size
-
-    def is_empty(self):
-        return self._size == 0
-
-    def first(self):
-        if self.is_empty():
-            raise Exception('The Queue is empty !')
-        return self._head._element
-
-    def dequeue(self):
-        if self.is_empty():
-            raise Exception('The Queue is empty !')
-        the_element = self._head._element
-        self._head = self._head._next
-        self._size -= 1
-        if self.is_empty():
-            self._tail = None
-        return the_element
-
-    def enqueue(self, element):
-        new_node = self._Node(element, None)
-        if self.is_empty():
-            self._head = new_node
-        else:
-            self._tail._next = new_node
-        self._tail = new_node
-        self._size += 1
+from Data_Algorithm_Python.Singly_Linked_List import LinkedQueue
 
 
 class Tree:
@@ -349,7 +308,7 @@ class LinkedBinaryTree(BinaryTree):
         if not self.is_leaf(p):
             raise ValueError('p must be leaf.')
         if not type(self) is type(t1) is type(t2):
-            raise TypeError('Tree types must be much.')
+            raise TypeError('H_Tree types must be much.')
         self._size += len(t1) + len(t2)
         if not t1.is_empty():
             t1._root._parent = node
@@ -363,7 +322,7 @@ class LinkedBinaryTree(BinaryTree):
             t2.size = 0
 
 
-# ----------------------------Applications of Tree Traversal----------------------------------
+# ----------------------------Applications of H_Tree Traversal----------------------------------
 def preorder_indent(tree, p, d):
     """Print preorder representation of subtree of tree rooted at p at depth d."""
     print(2 * d * '    ' + str(p.element()))        # use depth of indentation
