@@ -8,10 +8,10 @@ class LinkedStack:
     class _Node:
         """Lightweight, nonpublic class for storing a singly linked Node."""
 
-        slots = '_element', '_next'
+        __slots__ = '_element', '_next'
 
-        def __init__(self, element, next_node):
-            self._element = element
+        def __init__(self, e, next_node):
+            self._element = e
             self._next = next_node
 
     def __init__(self):
@@ -25,8 +25,8 @@ class LinkedStack:
     def is_empty(self):
         return self._size == 0
 
-    def push(self, element):
-        self._head = self._Node(element, self._head)    # Create and link a new Node
+    def push(self, e):
+        self._head = self._Node(e, self._head)    # Create and link a new Node
         self._size += 1
 
     def top(self):
@@ -47,8 +47,10 @@ class LinkedQueue:
 
     class _Node:
 
-        def __init__(self, element, next_node):
-            self._element = element
+        __slots__ = '_element', '_next'
+
+        def __init__(self, e, next_node):
+            self._element = e
             self._next = next_node
 
     def __init__(self):
@@ -65,20 +67,20 @@ class LinkedQueue:
     def first(self):
         if self.is_empty():
             raise Exception('The Queue is empty !')
-        return self._head._element
+        return self._head.element
 
     def dequeue(self):
         if self.is_empty():
             raise Exception('The Queue is empty !')
-        the_element = self._head._element
+        the_element = self._head.element
         self._head = self._head._next
         self._size -= 1
         if self.is_empty():
             self._tail = None
         return the_element
 
-    def enqueue(self, element):
-        new_node = self._Node(element, None)
+    def enqueue(self, e):
+        new_node = self._Node(e, None)
         if self.is_empty():
             self._head = new_node
         else:
@@ -89,10 +91,11 @@ class LinkedQueue:
 
 if __name__ == '__main__':
 
-    linked_stack = LinkedStack()
-    for i in range(10):
-        linked_stack.push(i)
-    linked_queue = LinkedQueue()
-    for i in range(10):
-        linked_queue.enqueue(i)
+    stack = LinkedStack()
+    for i in range(1, 6):
+        stack.push(i)
+    pop = stack.top()
 
+    queue = LinkedQueue()
+    for i in range(1, 6):
+        queue.enqueue(i)

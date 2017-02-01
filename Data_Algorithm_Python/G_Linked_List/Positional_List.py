@@ -34,7 +34,7 @@ class PositionalList(DoublyLinkedBase):
             raise TypeError('p must be proper Position type !')
         if p._container is not self:
             raise ValueError('p does not belong to this container !')
-        if p._node._next_node is None:
+        if p._node._next is None:
             raise ValueError('p is no longer valid !')
         return p._node
 
@@ -47,18 +47,18 @@ class PositionalList(DoublyLinkedBase):
 
     # ---------------------------------Accessors---------------------------------------
     def first(self):
-        return self._make_position(self._header._next_node)
+        return self._make_position(self._header._next)
 
     def last(self):
-        return self._make_position(self._trailer._prev_node)
+        return self._make_position(self._trailer._prev)
 
     def before(self, p):
         node = self._validate(p)
-        return self._make_position(node._prev_node)
+        return self._make_position(node._prev)
 
     def after(self, p):
         node = self._validate(p)
-        return self._make_position(node._next_node)
+        return self._make_position(node._next)
 
     def __iter__(self):
         cursor = self.first()
@@ -68,23 +68,23 @@ class PositionalList(DoublyLinkedBase):
 
     # -----------------------------------Mutators---------------------------------------
     # override inherited version of return Position , rather than Node
-    def _insert_between(self, element, predecessor, successor):
-        node = super()._insert_between(element, predecessor, successor)
+    def _insert_between(self, e, predecessor, successor):
+        node = super()._insert_between(e, predecessor, successor)
         return self._make_position(node)
 
-    def add_first(self, element):
-        return self._insert_between(element, self._header, self._header._next_node)
+    def add_first(self, e):
+        return self._insert_between(e, self._header, self._header._next)
 
-    def add_last(self, element):
-        return self._insert_between(element, self._trailer, self._trailer._prev_node)
+    def add_last(self, e):
+        return self._insert_between(e, self._trailer, self._trailer._prev)
 
     def add_before(self, p, e):
         original = self._validate(p)
-        return self._insert_between(e, original._prev_node, original)
+        return self._insert_between(e, original._prev, original)
 
     def add_after(self, p, e):
         original = self._validate(p)
-        return self._insert_between(e, original, original._next_node)
+        return self._insert_between(e, original, original._next)
 
     def delete(self, p):
         original = self._validate(p)
@@ -98,7 +98,7 @@ class PositionalList(DoublyLinkedBase):
 
     @staticmethod
     def insertion_sort(alist):
-        """Z_Sort Positional List of comparable elements into nondecreasing order"""
+        """Sort Positional List of comparable elements into nondecreasing order"""
         if len(alist) > 1:
             marker = alist.first()
             while marker != alist.last():
@@ -112,13 +112,3 @@ class PositionalList(DoublyLinkedBase):
                         walk = alist.before(walk)
                     alist.delete(pivot)
                     alist.add_before(walk, value)
-
-
-if __name__ == '__main__':
-
-    pl = PositionalList()
-    for i in range(10):
-        pl.add_first(i)
-    PositionalList.insertion_sort(pl)
-
-
