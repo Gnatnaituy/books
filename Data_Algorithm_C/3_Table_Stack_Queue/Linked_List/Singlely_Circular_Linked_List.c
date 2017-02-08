@@ -1,4 +1,4 @@
-#include "Singlely_Circular_Linked_LIst.h"
+#include "Singlely_Circular_Linked_List.h"
 #include <stdio.h>
 #include <stdlib.h>
 

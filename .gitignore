@@ -8,3 +8,7 @@ __pycache__
 .idea/
 .gitignore
 .nohup
+
+cmake-build-debug/
+CMakeLists.txt
+
