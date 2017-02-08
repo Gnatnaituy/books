@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from .General_Tree import LinkedBinaryTree
+from Data_Algorithm_Python.H_Tree.General_Tree import LinkedBinaryTree
 
 
 class ExpressionTree(LinkedBinaryTree):
@@ -15,21 +15,21 @@ class ExpressionTree(LinkedBinaryTree):
         and the expression tree will have that value at an isolate node.
 
         In  a three-parameter version, token should be an operator,
-        and eft and right should be existing Expression H_Tree instances
+        and eft and right should be existing Expression Tree instances
         that become the operands for the binary operator."""
 
-        super().__init__()                               # LinkedBinaryTree initialization
+        super().__init__()           # LinkedBinaryTree initialization
         if not isinstance(token, str):
             raise TypeError('Token must be a string !')
-        self._add_root(token)                          # use inherited, nonpublic method
-        if left is not None:                              # presumably three-parameter form
+        self._add_root(token)          # use inherited, nonpublic method
+        if left is not None:           # presumably three-parameter form
             if token not in '+-*x/':
                 raise ValueError('Token must be valid operator !')
             self._attach(self.root(), left, right)
 
     def __str__(self):
         """Return string representation of the expression."""
-        pieces = []                             # sequence of piecewise strings to compose
+        pieces = []           # sequence of piecewise strings to compose
         self._parenthesize_recur(self.root(), pieces)
         return ''.join(pieces)
 
@@ -67,7 +67,7 @@ class ExpressionTree(LinkedBinaryTree):
 
 
 def build_expression_tree(tokens):
-    """Return an Expression H_Tree based upon by a tokenized expression."""
+    """Return an Expression Tree based upon by a tokenized expression."""
     s = []
     for t in tokens:
         if t in '+-*/x':
@@ -81,3 +81,8 @@ def build_expression_tree(tokens):
             s.append(ExpressionTree(op, left, right))
     return s.pop()
 
+
+if __name__ == '__main__':
+    expression = '(3+8*(3+6))'
+    result = build_expression_tree(expression)
+    print(result.evaluate())

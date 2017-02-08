@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from Data_Algorithm_Python.Singly_Linked_List import LinkedQueue
+from Data_Algorithm_Python.G_Linked_List.Singly_Linked_List import LinkedQueue
 
 
 class Tree:
@@ -185,15 +185,17 @@ class LinkedBinaryTree(BinaryTree):
             self._container = container
             self._node = node
 
-        @property
         def element(self):
             return self._node._element
 
         def __eq__(self, other):
             return type(other) is type(self) and other._node is self._node
 
-    def _validate(self, p):
-        """Return associated node, if position is valid."""
+    def _return_node(self, p):
+        """Return associated node if position is valid.
+        
+        Else raise proper Error.
+        """
         if not isinstance(p, self.Position):
             raise TypeError('p must be proper Position type.')
         if p._container is not self:
@@ -217,19 +219,19 @@ class LinkedBinaryTree(BinaryTree):
         return self._make_position(self._root)
 
     def parent(self, p):
-        node = self._validate(p)
+        node = self._return_node(p)
         return self._make_position(node._parent)
 
     def left(self, p):
-        node = self._validate(p)
+        node = self._return_node(p)
         return self._make_position(node._left)
 
     def right(self, p):
-        node = self._validate(p)
+        node = self._return_node(p)
         return self._make_position(node._right)
 
     def num_children(self, p):
-        node = self._validate(p)
+        node = self._return_node(p)
         count = 0
         if node._left is not None:
             count += 1
@@ -253,7 +255,7 @@ class LinkedBinaryTree(BinaryTree):
         Return the Position of new node.
 
         Raise ValueError if Position is invalid of p already have a left child."""
-        node = self._validate(p)
+        node = self._return_node(p)
         if node._left is not None:
             raise ValueError('Left child exists.')
         self._size += 1
@@ -265,7 +267,7 @@ class LinkedBinaryTree(BinaryTree):
         Return the Position of new node.
 
         Raise ValueError if Position is invalid of p already have a right child."""
-        node = self._validate(p)
+        node = self._return_node(p)
         if node._right() is not None:
             raise ValueError('Left child exists.')
         self._size += 1
@@ -275,7 +277,7 @@ class LinkedBinaryTree(BinaryTree):
     def _replace(self, p, element):
         """Replace the element at position p with element,
         and return old element."""
-        node = self._validate(p)
+        node = self._return_node(p)
         old = node._element
         node._element = element
         return old
@@ -284,7 +286,7 @@ class LinkedBinaryTree(BinaryTree):
         """Delete the node at Position p, and replace it with its child, if any.
         Return the element that had been stored at Position p.
         Raise ValueError if Position p is invalid or has two children."""
-        node = self._validate(p)
+        node = self._return_node(p)
         if self.num_children(p) == 2:
             raise ValueError('p has two children.')
         child = node._left if node._left else node._right
@@ -304,11 +306,11 @@ class LinkedBinaryTree(BinaryTree):
 
     def _attach(self, p, t1, t2):
         """Attach trees t1 and t2 as left and right subtrees of external p."""
-        node = self._validate(p)
+        node = self._return_node(p)
         if not self.is_leaf(p):
             raise ValueError('p must be leaf.')
         if not type(self) is type(t1) is type(t2):
-            raise TypeError('H_Tree types must be much.')
+            raise TypeError('Tree types must be much.')
         self._size += len(t1) + len(t2)
         if not t1.is_empty():
             t1._root._parent = node
@@ -322,7 +324,7 @@ class LinkedBinaryTree(BinaryTree):
             t2.size = 0
 
 
-# ----------------------------Applications of H_Tree Traversal----------------------------------
+# ----------------------------Applications of H_Tree Traversal------------------------------
 def preorder_indent(tree, p, d):
     """Print preorder representation of subtree of tree rooted at p at depth d."""
     print(2 * d * '    ' + str(p.element()))        # use depth of indentation

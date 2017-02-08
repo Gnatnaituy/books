@@ -156,7 +156,7 @@ class TreeMap(LinkedBinaryTree, MapBase):
                     leaf = self._add_right(p, item)
                 else:
                     leaf = self._add_left(p, item)
-        self._rebalanec_insert(leaf)
+        self._rebalance_insert(leaf)
 
     def __iter__(self):
         p = self.first()

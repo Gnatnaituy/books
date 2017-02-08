@@ -75,10 +75,12 @@ class DiskSpaceTour(EulerTour):
 class BinaryEulerTour(EulerTour):
     """Abstract base class for performing Euler tour of a binary tree.
 
-    This version include an additional _hook_invisit that is called after the tour of
-    the left subtree ( if any ), yet before the tour of right subtree ( if any ).
+    This version include an additional _hook_invisit that is called
+    after the tour of the left subtree ( if any ), yet before the tour of
+    right subtree ( if any ).
 
-    Note: Right child is always assigned index 1 in path , even if no left sibling."""
+    Note: Right child is always assigned index 1 in path ,
+     even if no left sibling."""
 
     def _tour(self, p, d, path):
         results = [None, None]                  # will update with results of recursions
@@ -103,10 +105,10 @@ class BinaryLayout(BinaryEulerTour):
     """Class for computing (x, y) coordinates for each node of a binary tree."""
 
     def __init__(self, tree):
-        super().__init__(tree)                      # must call the parent constructor
-        self._count = 0                               # initialize count of processed nodes
+        super().__init__(tree)        # must call the parent constructor
+        self._count = 0       # initialize count of processed nodes
 
     def _hook_invisit(self, d, p, path):
-        p.element().setX(self._count)           # x-coordinate serialized by count
-        p.element().setY(d)                         # y-coordinate is depth
-        self._count += 1                             # advance count of processed nodes
+        p.element().setX(self._count)      # x-coordinate serialized by count
+        p.element().setY(d)         # y-coordinate is depth
+        self._count += 1          # advance count of processed nodes
