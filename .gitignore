@@ -3,12 +3,11 @@
 *.pyc
 *.gch
 *.out
-__pycache__
+__pycache__/
 .DS_Store
 .idea/
 .gitignore
 .nohup
-
 cmake-build-debug/
 CMakeLists.txt
 
