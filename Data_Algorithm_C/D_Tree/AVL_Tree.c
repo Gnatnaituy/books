@@ -141,6 +141,7 @@ int main()
     AvlTree myTree;
     Insert(1, myTree);
     Insert(23, myTree);
+    printf("5d", myTree->Element);
 
     return 0;
 }
