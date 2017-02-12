@@ -1,22 +1,31 @@
+from collections import deque
+import heapq
+from collections import OrderedDict
+import json
+from collections import Counter
+
+
 # 1.1 解压序列赋值给多个变量
 p = (4, 5)
 x, y = p  # x=4, y=5
 # 如果变量个数和序列元素的个数不匹配，会产生一个异常。
 data = ['ACME', 50, 91.1, (2012, 12, 31)]
-name, shares, price, date = data # ...data=(2012, 12, 31)
+name, shares, price, date = data    # ...data=(2012, 12, 31)
 
 
 # 1.2 解压可迭代对象赋值给多个变量
-sales = [12,13,14,12,15,12,11,16]
+sales = [12, 13, 14, 12, 15, 12, 11, 16]
 *last_7_months, this_months = sales
 last_7_months_avg = sum(last_7_months) / len(last_7_months)
 print("last_7_months_avg: %s, this_months: %s" % (last_7_months_avg,
-        this_months))
+                                                  this_months))
 
 records = [('foo', 1, 2), ('bar', 'hello'), ('foo', 3, 4)]
 
+
 def do_foo(x, y):
     print('foo', x, y)
+
 
 def do_bar(s):
     print('bar', s)
@@ -28,6 +37,8 @@ for tag, *args in records:
         do_bar(*args)
 
 items = [1, 12, 16, 10, 33, 11, 90]
+
+
 def sum(items):
     head, *tail = items
     return head + sum(tail) if tail else head
@@ -35,10 +46,8 @@ print(sum(items))
 
 
 # 1.3 保留最后N个元素
-from collections import deque
-
 def search(lines, pattern, history=5):
-    previous_lines = deque(maxlen = history)
+    previous_lines = deque(maxlen=history)
     for li in lines:
         if pattern in li:
             yield li, previous_lines
@@ -48,14 +57,12 @@ with open(r'test.txt') as f:
     for line, previous_lines in search(f, 'Line', 5):
         for pline in previous_lines:
             print(pline, end=' ')
-        print(line, end = ' ')
+        print(line, end=' ')
         print('-' * 20)
 
 
 # 1.4 查找最大或做小的N个元素
-import heapq
-
-nums = [1,2,3,4,5,6,7,8,11,23,15,21,41,456,33331]
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 11, 23, 15, 21, 41, 456, 33331]
 print(heapq.nlargest(3, nums))
 print(heapq.nsmallest(4, nums))
 
@@ -73,27 +80,27 @@ print('Cheap: \n', cheap, '\n', 'Expensive: \n', expensive)
 
 
 # 1.5 实现一个优先级队列
-import heapq
-
-class PriortyQueue:
+class PriorityQueue:
     def __init__(self):
         self._queue = []
         self._index = 0
 
-    def push(self, item, priorty):
-        heapq.heappush(self._queue, (-priorty, self._index, item))
+    def push(self, item, priority):
+        heapq.heappush(self._queue, (-priority, self._index, item))
         self._index += 1
 
     def pop(self):
         return heapq.heappop(self._queue)[-1]
 
+
 class Item:
     def __init__(self, name):
         self.name = name
+
     def __repr__(self):
         return 'Item({!r})'.format(self.name)
 
-q = PriortyQueue()
+q = PriorityQueue()
 q.push(Item('foo'), 1)
 q.push(Item('bar'), 5)
 q.push(Item('spam'), 3)
@@ -102,12 +109,8 @@ for i in range(1, 5):
     print(q.pop())
 
 
-
 # 1.6 字典中的键映射多个值
 # 1.7 字典排序
-from collections import OrderedDict
-import json
-
 d = OrderedDict() # 一个OrderedDict的大小是一个普通字典的两倍，因为它内部维护着另外一个链表
 d['foo'] = 1
 d['spam'] = 2
@@ -136,17 +139,18 @@ print('prices_sorted:', prices_sorted, '\n')
 
 # 1.9 查找两个字典的相同点
 # 1.10 删除序列相同元素并保持顺序
-def dedupe_hashable(items):
+def dequeue_hashable(items):
     seen = set()
     for item in items:
         if item not in seen:
             yield item
             seen.add(item)
 
-a = [1,2,3,3,5,2,54,6,7]
-print(list(dedupe_hashable(a)))
+a = [1, 2, 3, 3, 5, 2, 54, 6, 7]
+print(list(dequeue_hashable(a)))
 
-def dedupe_unhashable(items, key=None):
+
+def dequeue_unhashable(items, key=None):
     seen = set()
     for item in items:
         val = item if key is None else key(item)
@@ -155,8 +159,7 @@ def dedupe_unhashable(items, key=None):
             seen.add(val)
 
 a = [{'x':1, 'y':2}, {'x':1, 'y':3}, {'x':1, 'y':2}, {'x':2, 'y':4}]
-print(list(dedupe_unhashable(a, key = lambda d: d['x'])))
-
+print(list(dequeue_unhashable(a, key = lambda d: d['x'])))
 
 
 # 1.12 序列中出现次数最多的元素
@@ -166,7 +169,6 @@ words = [
     'eyes', "don't", 'look', 'around', 'the', 'eyes', 'look', 'into',
     'my', 'eyes', "you're", 'under'
     ]
-from collections import Counter
 word_counter = Counter(words)
 top_three = word_counter.most_common(3)
 print(top_three)
@@ -203,9 +205,10 @@ class User:
     def __repr__(self):
         return 'User({})'.format(self.user_id)
 
+
 def sorted_notcompare():
     print(users)
-    print(sorted(users, key = lambda u: u.user_id))
+    print(sorted(users, key=lambda u: u.user_id))
 
 users = [User(120), User(1), User(3)]
 sorted_notcompare()

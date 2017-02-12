@@ -1,0 +1,8 @@
+Apple
+Microsoft
+IBM
+ZTE
+MI
+SONY
+INTEL
+MTK
