@@ -3,6 +3,7 @@
 //
 
 int main(){
+    arrayCounter();
 
     return 0;
 }
