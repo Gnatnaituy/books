@@ -345,15 +345,15 @@ def preorder_label(tree, p, d, path):
 
 def parenthesize(tree, p):
     """Print parenthesize representation of subtree of tree rooted at p."""
-    print(p.element(), end=' ')                  # use of end avoids trailing newline
+    print(p.element(), end=' ')     # use of end avoids trailing newline
     if not tree.is_leaf(p):
         first_time = True
         for c in tree.children(p):
             sep = ' (' if first_time else ', '      # determine proper separator
             print(sep, end=' ')
-            first_time = False                        # any future passes will not be the first
-            parenthesize(tree, c)                   # recur on child
-        print(')', end=' ')                             # include closing parenthesis
+            first_time = False  # any future passes will not be the first
+            parenthesize(tree, c)   # recur on child
+        print(')', end=' ')     # include closing parenthesis
 
 
 def disk_space(tree, p):

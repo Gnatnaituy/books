@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#define INWORD     1
-#define OUTWORD 0
+#define INWORD      1
+#define OUTWORD     0
 #define MAXLENGTH 100
 
 
@@ -277,7 +277,7 @@ int len(char s[]){
 }
 
 void reverse(char s[]){
-    char rs[MAXLENGTH];emptyLine(rs);
+    char rs[MAXLENGTH]; emptyLine(rs);
     int i = 0;
 
     int slen = len(s);
