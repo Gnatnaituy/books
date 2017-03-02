@@ -3,13 +3,14 @@ def createGenerator():
     for i in mylist:
         yield i*i
 
-myGenerator = createGenerator()
-print(myGenerator)
-for i in myGenerator:
+my_generator = createGenerator()
+print(my_generator)
+for i in my_generator:
     print(i)
 
-if myGenerator:
-    for j in myGenerator:
+
+if my_generator:
+    for j in my_generator:
         print(j)
 else:
     print('MyGenerrator Disappeared.')

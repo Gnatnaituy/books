@@ -1,12 +1,12 @@
 *.dSYM/
 *.o
+*.exe
 *.pyc
 *.gch
 *.out
 __pycache__/
 .DS_Store
 .idea/
-.vscode/
 .gitignore
 .nohup
 cmake-build-debug/

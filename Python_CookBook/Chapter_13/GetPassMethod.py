@@ -1,6 +1,6 @@
 import getpass
 
-user = input('Enter your uaername: ')
+user = input('Enter your username: ')
 passwd = getpass.getpass()
 
 def svc_login(user, passwd):
