@@ -1,7 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
-
+        // Python
         {
             "name": "Python",
             "type": "python",
@@ -16,6 +16,5 @@
                 "RedirectOutput"
             ]
         }
-
     ]
 }
