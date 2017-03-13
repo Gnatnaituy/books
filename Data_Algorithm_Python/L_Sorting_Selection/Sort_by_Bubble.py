@@ -1,5 +1,5 @@
 def bubble(alist):
-    # 冒泡法
+    
     swapped = True
 
     while swapped:
