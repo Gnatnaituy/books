@@ -10,7 +10,7 @@
 
 **2017/3/14**: SICP C3S3///Modeling with Mutable Data///82 rows scheme
 
-**2017/3/15**: SICP C3S4///Concurrency///0 rowss
+**2017/3/15**: SICP C3S4///Concurrency///24 rowss
 
 ## K&R
 
