@@ -1,15 +1,16 @@
 (define (make-acount balance secret)
+
     (define wrong-count 0)
-    
+
     (define (call-the-cops)
         (lambda (x) "The police is coming, run !!!"))
-    ;; withdraw
+
     (define (withdraw amount)
         (if (>= balance amount)
             (begin (set! balance (- balance amount))
                         balance)
             "Insufficient funds"))
-    ;; deposit
+
     (define (deposit amount)
         (set! balance (+ balance amount)) balance)
 
