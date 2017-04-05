@@ -8,6 +8,7 @@ def non_ascii(c):
     return c > 127
 """
 
+
 def clock(label, cmd):
     res = timeit.repeat(cmd, setup=SETUP, number=TIMES)
     print(label, *('{:.3f}'.format(x) for x in res))
