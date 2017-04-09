@@ -19,4 +19,12 @@
     dispatch)
 
 
-(define acc (make-account 100 'abc))
+(define (make-joint account account-password join-password)
+    (lambda (input-password m)
+        (if (eq? input-password join-password)
+            (account account-password m)
+            (lambda (x) "Incorrect join password !!!"))))
+
+
+(define eminem (make-account 10000 'qwerty))
+(define Slim-Shady (make-joint eminem 'qwerty 'asdfgh))
