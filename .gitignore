@@ -7,6 +7,7 @@
 __pycache__/
 .DS_Store
 .idea/
+.vscode/
 .gitignore
 .nohup
 cmake-build-debug/
