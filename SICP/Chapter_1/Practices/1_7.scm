@@ -7,8 +7,8 @@
     (define (abs a) (if (< a 0) (- a) a))
 
     (define (good-enough? guess)
-      (< (/ (abs (- x guess)) guess) 0.0001))
-   ;;(< (abs (- (square guess) x)) 0.0001))
+        (< (/ (abs (- x guess)) guess) 0.0001))
+        ;;(< (abs (- (square guess) x)) 0.0001))
 
     (define (improve guess)
         (average guess (/ x guess)))

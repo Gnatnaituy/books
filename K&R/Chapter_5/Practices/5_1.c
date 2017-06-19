@@ -1,15 +1,18 @@
 #include <ctype.h>
+#include <stdio.h>
 
+#define EOF '#'
 int getch(void);
 void ungetch(int);
 
+// get next integer from input into *pn
 int getint(int *pn){
-    int c, sign;
+    int c, d, sign;
 
-    while(isspace(c = getchar()))
+    while(isspace(c = getchar()))   // skip whitespace
         ;
     if(!isdigit(c) && c != EOF && c != '+' && c != '-'){
-        ungetch(c);
+        ungetch(c);     // it is not a number
         return 0;
     }
     sign = (c == '-') ? -1 : 1;
