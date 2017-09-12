@@ -3,13 +3,14 @@
 ;如果n>=3, 那么f(n)=f(n-1)+2f(n-2)+3f(n-3)
 
 
+;递归
 (define (f-recursive n)
     (cond ((< n 3) n)
         (else (+ (f-recursive (- n 1))
                  (* 2 (f-recursive (- n 2)))
                  (* 3 (f-recursive (- n 3)))))))
 
-
+;迭代
 (define (f-iteration n)
 
     (define (f-iter a b c n)
