@@ -10,15 +10,13 @@ int getlineo(void);
 void copy(void);
 
 
-int main()
-{
+int main(){
     int len;
     extern int max;
     extern char longest[];
 
     max = 0;
-    while((len = getlineo()) > 0)
-    {
+    while((len = getlineo()) > 0){
         if(len > max)
         {
             max = len;

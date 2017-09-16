@@ -11,7 +11,7 @@ int main(){
             okloop = NO;
         else if((c = getchar()) == '\n')
             okloop = NO;
-        else if(c == EOF)       // end of file?
+        else if(c == EOF)   // end of file?
             okloop = NO;
         else{
             s[i] = c;
