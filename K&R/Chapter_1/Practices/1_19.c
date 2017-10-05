@@ -20,7 +20,7 @@ int mygetline()
     if(c =='\n')
         line[i] = c;
 
-    return i+1; // 数组从０开始
+    return i+1; // 数组从０开始 
 }
 
 void reverse()
