@@ -10,20 +10,25 @@ int getlineo(void);
 void copy(void);
 
 
-int main(){
+int main()
+{
     int len;
     extern int max;
     extern char longest[];
 
     max = 0;
-    while((len = getlineo()) > 0){
+
+    while((len = getlineo()) > 0)
+    {
         if(len > max)
         {
             max = len;
             copy();
         }
     }
-    if(max > 0){
+
+    if(max > 0)
+    {
         printf("%s", longest);
     }
 
@@ -31,22 +36,25 @@ int main(){
 }
 
 
-int getlineo(void){
+int getlineo(void)
+{
     int c, i;
     extern char line[];
 
     for(i = 0; i < MAXLINE-1 && (c = getchar()) != EOF && c != '\n'; ++i)
         line[i] = c;
-    if(c =='\n'){
+
+    if(c =='\n')
+    {
         line[i] = c;
         ++i;
     }
-    line[i] = '\n';\
 
     return i;
 }
 
-void copy(void){
+void copy(void)
+{
     int i;
     extern char line[], longest[];
 
