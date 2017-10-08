@@ -29,7 +29,7 @@ int hex_to_int(char s[]){
 }
 
 int main(){
-    printf("%s", hex_to_int("0xAF1011BE"));
+    printf("%d\n", hex_to_int("0x111E"));
 
     return 0;
 }

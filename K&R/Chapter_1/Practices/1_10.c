@@ -6,7 +6,7 @@ int main(){
     printf("Input : ");
     c = getchar();
     printf("\nOutput: ");
-
+fprintf(stderr, "%s\n", );
     do{ 
         if(c == '\t'){
             putchar('\\');
