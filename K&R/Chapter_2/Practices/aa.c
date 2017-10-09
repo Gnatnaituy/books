@@ -1,10 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
-    int a[3][2]={10,20,30,40,50,60}, (*p)[2];
-    p = a;
-    printf("%d\n", *(*(p + 2) + 1));
+    int a[3] = {10,20,30};
+    printf("%d\n", sizeof(a)/sizeof(a[0]));
 
     return 0;
 }
