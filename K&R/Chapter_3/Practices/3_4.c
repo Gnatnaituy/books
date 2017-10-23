@@ -1,4 +1,3 @@
-#include <stdio.h>
 #define abs(x) ((x) < 0 ? -(x) : (x))
 
 
@@ -16,9 +15,4 @@ void itoa(int n, char s[]){
         s[i++] = '-';
     s[i] = '\0';
     reverse(s);
-}
-
-int main(void){
-
-    return 0;
 }

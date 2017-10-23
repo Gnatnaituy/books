@@ -23,11 +23,3 @@ int binsearch(int x, int v[], int n)
         return -1;
 }
 
-int main(void)
-{
-    int v[] = {1,1,1,1,1,2,3,4,5,6,7,8};
-    int x = binsearch(3, v, 12);
-    printf("%d\n", x);
-
-    return 0;
-}

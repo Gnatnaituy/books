@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 void expand(char s1[], char s2[]){
     char c;
     int i, j;
@@ -14,14 +12,4 @@ void expand(char s1[], char s2[]){
             s2[j++] = c;
     s2[j] = '\0';
     }
-}
-
-int main(void){
-    char s1[] = "A-Za-z0-9";
-    char s2[100] = "";
-
-    expand(s1, s2);
-    printf("%s\n%s\n", s1, s2);
-
-    return 0;
 }

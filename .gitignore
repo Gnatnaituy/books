@@ -11,5 +11,4 @@ __pycache__/
 .gitignore
 .nohup
 cmake-build-debug/
-CMakeLists.txt
 

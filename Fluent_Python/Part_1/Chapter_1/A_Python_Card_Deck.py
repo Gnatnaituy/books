@@ -4,7 +4,7 @@ Card = collections.namedtuple('Card', ['rank', 'suit'])
 
 
 class FrenchDeck:
-    ranks = [str(n) for n in range(2, 11)] + list('JQKA')
+    ranks = [str(n) for n in range(2, 4)] + list('AB')
     suits = 'what are you saying'.split()
 
     def __init__(self):
@@ -18,7 +18,7 @@ class FrenchDeck:
         return self._cards[position]
 
 
-suit_values = dict(what=3, are=2, you=0, saying=1)
+suit_values = dict(what=0, are=1, you=2, saying=3)
 
 
 def spades_high(card):
