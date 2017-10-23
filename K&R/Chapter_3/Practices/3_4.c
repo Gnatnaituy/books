@@ -1,18 +1,20 @@
+#include "../my_reverse.c"
 #define abs(x) ((x) < 0 ? -(x) : (x))
 
 
-// itoa: convert n to characters in s - modified
-void itoa(int n, char s[]){
-    int i, sign;
-    void reverse(char s[]);
+// itoa:将字符n转换为字符串并保存到s中
+void itoa(int n, char s[])
+{
+    int sign = n;
+    int i = 0;
 
-    sign = n;       // record sign
-    i = 0;
-    do{     //generate digits in reverse order
-        s[i++] = abs(n % 10) + '0';     // get next digit
-    }while((n /= 10) != 0);     // delete it
+    do
+        s[i++] = abs(n % 10) + '0'; //整数+'0'成为对应该数字的字符
+    while((n /= 10) != 0);
+
     if(sign < 0)
-        s[i++] = '-';
+        s[i++] = '-'; //录入n的符号
     s[i] = '\0';
-    reverse(s);
+
+    my_reverse(s);
 }

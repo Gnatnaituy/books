@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 // escape
 void escape(char s[], char t[]){
     int i, j;
@@ -74,22 +72,3 @@ void unescape_v2(char s[], char t[]){
     s[j] = '\0';
 }
 
-
-int main(void){
-    char string0[] = "I'm\tyour\n\tfather.";
-    char string1[] = "I'm your father.";
-    char string2[] = "";
-    char string3[] = "";
-    char string4[] = "";
-
-    escape(string2, string1);
-    printf("%s\n", string2);
-
-    unescape(string3, string0);
-    printf("%s\n", string3);
-
-    unescape_v2(string4, string0);
-    printf("%s\n", string4);
-
-    return 0;
-}
