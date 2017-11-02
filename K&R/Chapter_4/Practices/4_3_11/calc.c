@@ -3,7 +3,7 @@
 #include "calculator.h"
 #include "../../chapter_4.c"
 
-
+7
 #define MAXOP   100       //max size of operand or operator
 
 int calc()

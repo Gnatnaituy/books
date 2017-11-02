@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include "calculator.h"
 
 #define MAXVAL 100      // the max depth of stack
 
 
-int sp = 0;     //position of the next free stack
-double val[MAXVAL];     // value stack
+static int sp = 0;     //position of the next free stack
+static double val[MAXVAL];     // value stack
 
 void push(double f)
 {

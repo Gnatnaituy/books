@@ -7,7 +7,7 @@ int get_op(char s[])
 {
     int c, i;
 
-    while((s[0] = c = getchar()) == ' ' || c == '\t')
+    while((s[0] = c = get_ch()) == ' ' || c == '\t')
         ;
     s[1] = '\0';
     i = 0;

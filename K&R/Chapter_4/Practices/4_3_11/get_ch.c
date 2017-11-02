@@ -1,9 +1,9 @@
-#include "../../chapter_4.c"
+#include <stdio.h>
 
 #define BUFSIZE 100
 
-char buf[BUFSIZE];      //use as the buff space of unget_ch
-int bufp = 0;       // the next free space in buff
+static char buf[BUFSIZE];      //use as the buff space of unget_ch
+static int bufp = 0;       // the next free space in buff
 
 int get_ch(void)        //get a character(maybe one unget_ch()ed)
 {
