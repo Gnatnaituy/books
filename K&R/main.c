@@ -1,12 +1,11 @@
 #include <stdio.h>
-#include "Chapter_4/Practices/4_12.c"
+#include "Chapter_4/quick_sort.c"
 
 
 int main(void)
 {
-    char s[100];
-    itoa(1234, s);
-    printf("%s", s);
+    int a[] = {2333, 123, 1, 5, 56, 2, 55, 789};
+    quick_sort(a, 0, 7);
 
     return 0;
 }
