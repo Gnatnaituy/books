@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(){
+void FtoC(){
 
     float Fahr, Cels;
     int lower = 0, upper = 300, step = 20;
