@@ -74,3 +74,4 @@ class DoublyLinkedQueue(DoublyLinkedBase):
         if self.is_empty():
             raise Exception('Empty Queue !')
         return self._delete_node(self._trailer._prev)
+

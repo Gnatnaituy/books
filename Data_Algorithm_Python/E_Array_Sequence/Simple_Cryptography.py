@@ -31,6 +31,7 @@ class CaesarCipher:
                 msg[k] = code[j]
         return ''.join(msg)
 
+
 if __name__ == '__main__':
     cipher = CaesarCipher(6)
     message = 'APPLE, MICROSOFT'
