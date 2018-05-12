@@ -15,5 +15,3 @@ class Stack:
         @element.setter
         def element(self, element):
             self._element = element
-        
-        
