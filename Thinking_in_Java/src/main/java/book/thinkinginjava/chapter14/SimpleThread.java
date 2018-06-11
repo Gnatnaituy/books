@@ -5,14 +5,14 @@ public class SimpleThread extends Thread {
     private int threadNumber;
     private static int threadCount = 0;
 
-    public SimpleThread() {
+    private SimpleThread() {
         threadNumber = ++threadCount;
-        System.out.println("Making " + threadNumber);
+        System.out.println("Making SimpleThread " + threadNumber);
     }
 
     public void run() {
         while (true) {
-            System.out.println("Thread " + threadNumber + "(" + countDown + ")");
+            System.out.println("SimpleThread " + threadNumber + "-" + countDown);
             if (--countDown == 0) return;
         }
     }

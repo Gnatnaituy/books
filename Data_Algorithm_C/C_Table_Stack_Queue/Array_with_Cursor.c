@@ -32,7 +32,7 @@ List MakeEmpty( List L)
     if( L != NULL)
         DeleteList( L );
     L = CursorAllocate();
-    if ( L = 0 )
+    if ( L == 0 )
         printf("Out of memory!");
     CursorSpace[L].Next = 0;
     return L;
@@ -98,7 +98,7 @@ void Insert( ElementType X, List L, Position P )
     CursorSpace[P].Next = TmpCell;
 }
 
-//Corret DeleteList algorithm
+//Correct DeleteList algorithm
 void DeleteList( List L )
 {
     Position P, Tmp;
