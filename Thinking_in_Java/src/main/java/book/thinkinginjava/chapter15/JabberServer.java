@@ -18,12 +18,14 @@ public class JabberServer {
                         new BufferedReader(
                                 new InputStreamReader(
                                         socket.getInputStream()));
+
                 // Output is automatically flushed by PrintWriter
                 PrintWriter out =
                         new PrintWriter(
                                 new BufferedWriter(
                                         new OutputStreamWriter(
                                                 socket.getOutputStream())), true);
+
                 while (true) {
                     String str = in.readLine();
                     if (str.equals("END"))
