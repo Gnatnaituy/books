@@ -25,9 +25,8 @@ ElementType Retrieve( const Position P );
 #endif
 
 
-//Palce in the implememtation file
-struct Node
-{
+//Place in the implementation file
+struct Node {
     ElementType Element;
     Position    Next;
 };
