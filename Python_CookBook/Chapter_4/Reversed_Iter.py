@@ -1,4 +1,4 @@
-class countdown:
+class CountDown:
     def __init__(self, start):
         self.start = start
 
@@ -10,13 +10,14 @@ class countdown:
             n -= 1
 
     # Reversed Iterator
-    def __reversed__(self):  #reversed() 为内置函数
+    def __reversed__(self):  # reversed() 为内置函数
         n = 1
         while n <= self.start:
             yield n
             n += 1
 
-for rr in reversed(countdown(30)):
+
+for rr in reversed(CountDown(30)):
     print(rr)
-for rr in countdown(30):
+for rr in CountDown(30):
     print(rr)

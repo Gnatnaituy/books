@@ -53,6 +53,7 @@ def search(lines, pattern, history=5):
             yield li, previous_lines
         previous_lines.append(li)
 
+
 with open(r'test.txt') as f:
     for line, previous_lines in search(f, 'Line', 5):
         for pline in previous_lines:

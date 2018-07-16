@@ -4,19 +4,20 @@ class Node:
         self._value = value
         self._children = []
 
-    def __reper__(self):
+    def __repr__(self):
         return 'Node({!r})'.format(self._value)
+
+    def __iter__(self):
+        return iter(self._children)  # iter(s) == s.__iter__()
 
     def add_child(self, node):
         self._children.append(node)
-
-    def __iter__(self):
-        return iter(self._children)  #iter(s) == s.__iter__()
 
     def depth_first(self):
         yield self
         for c in self:
             yield from c.depth_first()
+
 
 if __name__ == '__main__':
     root = Node(0)
