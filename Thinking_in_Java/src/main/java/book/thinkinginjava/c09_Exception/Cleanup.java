@@ -1,4 +1,4 @@
-package main.java.book.thinkinginjava.chapter09;
+package main.java.book.thinkinginjava.c09_Exception;
 
 import java.io.*;
 

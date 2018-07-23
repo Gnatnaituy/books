@@ -1,12 +1,12 @@
-package main.java.book.thinkinginjava.chapter09;
+package main.java.book.thinkinginjava.c09_Exception;
 
 public class Rethrowing {
 
-    public static void f() throws Exception {
+    private static void f() throws Exception {
         throw new Exception("Thrown from f()");
     }
 
-    public static void g() throws Throwable {
+    private static void g() throws Throwable {
         try {
             f();
         } catch (Exception e) {
