@@ -1,9 +1,12 @@
 #define MAXSIZE = 25
+
+
 typedef struct
 {
     int data[MAXSIZE];
     int length;    //当前线性表长度
 } SqList;
+
 
 //La 表示集合a Lb表示集合b
 void unionL(List *La, List Lb)
