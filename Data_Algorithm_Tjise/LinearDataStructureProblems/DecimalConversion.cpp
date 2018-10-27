@@ -2,10 +2,9 @@
 // Created by Hasaker on 2018/10/19.
 //
 
-#include <stdio.h>
 #include "../LinearDataStructure/LinearDataStructure.h"
 
-void conversion()
+void decimalConversion()
 {
     SqStack stack;
     ElementType element;

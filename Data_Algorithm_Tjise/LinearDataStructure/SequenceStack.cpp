@@ -2,12 +2,6 @@
 // Created by Hasaker on 2018/10/23.
 //
 
-//
-// Created by Hasaker on 2018/10/18.
-//
-
-#include <stdio.h>
-#include <stdlib.h>
 #include "LinearDataStructure.h"
 
 
@@ -32,7 +26,6 @@ Status StackEmpty(SqStack &S) {
 
 Status Push(SqStack &S, ElementType e) {
     if (S.top >= S.size) {
-        // realloc 是 reallocate的缩写 及'重新分配'
         auto * newBase = (ElementType *) realloc(S.base, (S.size + S.increment) * sizeof(ElementType));
         if (newBase == nullptr)
             return OVERFLOW;
@@ -45,7 +38,6 @@ Status Push(SqStack &S, ElementType e) {
 }
 
 
-// &e表示对e的引用 例如int &a = b; 其实a就是b,只是给b取了另一个名字
 Status Pop(SqStack &S, ElementType &e) {
     if (StackEmpty(S) == FALSE) {
         S.top--;
@@ -73,7 +65,7 @@ void OutStack(SqStack S) {
 }
 
 
-Status InitStack_Sq(SqStack_Char &S, int size, int increment){
+Status InitStack_Char(SqStack_Char &S, int size, int increment){
     S.base = (CharElementType *) malloc(size * sizeof(CharElementType));
     if (S.base == nullptr)
         return OVERFLOW;
@@ -85,7 +77,7 @@ Status InitStack_Sq(SqStack_Char &S, int size, int increment){
 }
 
 
-Status StackEmpty_Sq(SqStack_Char &S) {
+Status StackEmpty_Char(SqStack_Char &S) {
     if (S.top == 0)
         return TRUE;
     else
@@ -93,7 +85,7 @@ Status StackEmpty_Sq(SqStack_Char &S) {
 }
 
 
-Status Push_Sq(SqStack_Char &S, CharElementType e) {
+Status Push_Char(SqStack_Char &S, CharElementType e) {
     CharElementType * newBase;
     if (S.top >= S.size) {
         newBase = (CharElementType *) realloc(S.base, (S.size + S.increment) * sizeof(CharElementType));
@@ -107,8 +99,8 @@ Status Push_Sq(SqStack_Char &S, CharElementType e) {
 }
 
 
-Status Pop_Sq(SqStack_Char &S, CharElementType &e) {
-    if (StackEmpty_Sq(S) == FALSE) {
+Status Pop_Char(SqStack_Char &S, CharElementType &e) {
+    if (StackEmpty_Char(S) == FALSE) {
         S.top--;
         e = S.base[S.top];
     } else {
@@ -119,57 +111,11 @@ Status Pop_Sq(SqStack_Char &S, CharElementType &e) {
 }
 
 
-Status GetTop_Sq(SqStack_Char &S, CharElementType &e) {
-    if (StackEmpty_Sq(S) == FALSE) {
+Status GetTop_Char(SqStack_Char &S, CharElementType &e) {
+    if (StackEmpty_Char(S) == FALSE) {
         e = S.base[S.top - 1];
     } else {
         printf("This is a empty stack !");
     }
     return OK;
 }
-
-
-void test_sq_stack() {
-    SqStack s;
-    ElementType a;
-    int choice;
-
-    printf("第一次使用必须初始化!\n");
-    do {
-        printf("\n-----菜单-----\n");
-        printf("1 初始化顺序栈\n");
-        printf("2 插入一个元素\n");
-        printf("3 删除栈顶元素\n");
-        printf("4 结束程序运行\n");
-        printf("-------------\n");
-        printf("请输入你的选择: ");
-
-        scanf("%d", &choice);
-        switch (choice) {
-            case 1:
-                InitStack(s);
-                OutStack(s);
-                break;
-            case 2:
-                printf("请输入要插入的元素数据: ");
-                scanf("%d", &a);
-                Push(s, a);
-                printf("入栈之后的栈:\n");
-                OutStack(s);
-                printf("\n");
-                break;
-            case 3:
-                Pop(s, a);
-                printf("栈顶元素%d出栈之后的栈:\n", a);
-                OutStack(s);
-                printf("\n");
-                break;
-            case 4:
-                exit(0);
-            default:
-                break;
-        }
-    } while (choice <= 4);
-}
-
-

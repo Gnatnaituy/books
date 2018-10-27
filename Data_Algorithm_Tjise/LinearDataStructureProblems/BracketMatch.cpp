@@ -2,32 +2,30 @@
 // Created by Hasaker on 2018/10/20.
 //
 
-#include <cstdlib>
-#include <cstdio>
 #include "../LinearDataStructure/LinearDataStructure.h"
 
 
-Status bracket_matching(char * expression, int n) {
+Status bracketMatch(char * expression, int n) {
     int i = 0;
     CharElementType e;
-    SqStack_Sq S;
-    InitStack_Sq(S, n, 5);
+    SqStack_Char S;
+    InitStack_Char(S, n, 5);
 
     while (i < n) {
         switch (expression[i]) {
             case '(':
             case '[':
-                Push_Sq(S, expression[i]);
+                Push_Char(S, expression[i]);
                 i++;
                 break;
             case ')':
             case ']':
-                if (StackEmpty_Sq(S) == TRUE) {
+                if (StackEmpty_Char(S) == TRUE) {
                     return ERROR;
                 } else {
-                    GetTop_Sq(S, e);
+                    GetTop_Char(S, e);
                     if ((expression[i] == ')' && e == '(') || (expression[i] == ']' && e == '[')) {
-                        Pop_Sq(S, e);
+                        Pop_Char(S, e);
                         i++;
                     } else {
                         return ERROR;
@@ -40,7 +38,7 @@ Status bracket_matching(char * expression, int n) {
         }
     }
 
-    if (StackEmpty_Sq(S) == TRUE) {
+    if (StackEmpty_Char(S) == TRUE) {
         printf("This is a right bracket sequence.");
         return OK;
     } else {

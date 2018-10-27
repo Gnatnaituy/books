@@ -5,6 +5,10 @@
 #ifndef DATASTRUCTUREANDALGORITHM_LINEAR_DATA_STRUCTURE_H
 #define DATASTRUCTUREANDALGORITHM_LINEAR_DATA_STRUCTURE_H
 
+#include <cstdlib>
+#include <cstdio>
+#include <iostream>
+
 #define OK          1
 #define ERROR       0
 #define TRUE        1
@@ -15,6 +19,8 @@
 #define STACK_INCREMENT 5
 #define MAXSIZE         30
 
+
+// Data type of LinearDataStructure
 typedef int ElementType;
 typedef char CharElementType;
 typedef int Status;
@@ -48,7 +54,7 @@ typedef struct {
 } SqQueue_Char;
 
 
-// SequenceQueue.cpp
+// SequenceQueue
 Status InitQueue(SqQueue &Q);
 Status QueueEmpty(SqQueue &Q);
 Status EnQueue(SqQueue &Q, ElementType e);
@@ -58,8 +64,8 @@ Status InitQueue_Char(SqQueue_Char &Q);
 Status QueueEmpty_Char(SqQueue_Char &Q);
 Status EnQueue_Char(SqQueue_Char &Q, CharElementType e);
 Status DeQueue_Char(SqQueue_Char &Q, CharElementType &e);
-Status OutQueue(SqQueue_Char Q);
-void test_queue();
+Status OutQueue_Char(SqQueue_Char Q);
+
 
 // SequenceStack
 Status InitStack(SqStack &S);
@@ -67,21 +73,19 @@ Status StackEmpty(SqStack &S);
 Status Push(SqStack &S, ElementType e);
 Status Pop(SqStack &S, ElementType &e);
 void OutStack(SqStack S);
-Status InitStack_Sq(SqStack_Char &S, int size, int increment);
-Status StackEmpty_Sq(SqStack_Char &S);
-Status Push_Sq(SqStack_Char &S, CharElementType e);
-Status Pop_Sq(SqStack_Char &S, CharElementType &e);
-Status GetTop_Sq(SqStack_Char &S, CharElementType &e);
-void test_sq_stack();
+Status InitStack_Char(SqStack_Char &S, int size, int increment);
+Status StackEmpty_Char(SqStack_Char &S);
+Status Push_Char(SqStack_Char &S, CharElementType e);
+Status Pop_Char(SqStack_Char &S, CharElementType &e);
+Status GetTop_Char(SqStack_Char &S, CharElementType &e);
 
-// bracket_match.cpp
-Status bracket_matching(char * expression, int n);
 
-// decimal_conversion.cpp
-void conversion();
-
-// carriage_organize.cpp
-void Arrange(SqQueue A, SqQueue &B, SqQueue &C);
-void CarriageArrange();
+// Methods of LinearDataStructure
+void manipulateSequenceStack();
+void manipulateSequenceQueue();
+Status bracketMatch(char * expression, int n);
+void decimalConversion();
+void arrange(SqQueue_Char A, SqQueue_Char &B, SqQueue_Char &C);
+void carriageArrange();
 
 #endif //DATASTRUCTUREANDALGORITHM_LINEAR_DATA_STRUCTURE_H
