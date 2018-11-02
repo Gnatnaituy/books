@@ -18,6 +18,8 @@
 #define STACK_INIT_SIZE 10
 #define STACK_INCREMENT 5
 #define MAXSIZE         30
+#define LIST_INIT_SIZE  100
+#define LIST_INCREMENT  10
 
 
 // Data type of LinearDataStructure
@@ -25,6 +27,24 @@ typedef int ElementType;
 typedef char CharElementType;
 typedef int Status;
 
+
+// SequenceList Node in int
+typedef struct {
+    ElementType * element;
+    int length;
+    int size;
+    int increment;
+} SqList;
+
+// SequenceList Node in char
+typedef struct {
+    CharElementType * element;
+    int length;
+    int size;
+    int increment;
+} SqList_Char;
+
+// SequenceStack Node in int
 typedef struct {
     ElementType * base;
     int top;
@@ -32,6 +52,7 @@ typedef struct {
     int increment;
 } SqStack;
 
+// SequenceStack Node in char
 typedef struct {
     CharElementType * base;
     int top;
@@ -39,6 +60,7 @@ typedef struct {
     int increment;
 } SqStack_Char;
 
+// SequenceQueue Node in int
 typedef struct {
     ElementType * element;
     int front;
@@ -46,12 +68,52 @@ typedef struct {
     int maxSize;
 } SqQueue;
 
+// SequenceQueue Node in char
 typedef struct {
     CharElementType * element;
     int front;
     int rear;
     int maxSize;
 } SqQueue_Char;
+
+// SinglyLinkedList Node in int
+typedef struct SLNode {
+    ElementType data;
+    struct SLNode * next;
+} SLNode, * SinglyLinkedList;
+
+// SinglyLinkedList Node in char
+typedef struct SLNode_Char {
+    CharElementType data;
+    struct SLNode_Char * next;
+} SLNode_Char, * SinglyLinkedList_Char;
+
+// DoublyLinkedList Node in int
+typedef struct DLNode {
+    ElementType data;
+    struct DLNode * previous;
+    struct DLNode * next;
+} DLNode, * DoublyLinkedList;
+
+// DoublyLinkedList Node in char
+typedef struct DLNode_Char {
+    CharElementType data;
+    struct DLNode_Char * previous;
+    struct DLNode_Char * next;
+} DLNode_Char, * DoublyLinkedList_Char;
+
+
+// SequenceList
+Status InitList(SqList &L);
+Status ListEmpty(SqList L);
+Status ListInsert(SqList &L, int i, ElementType e);
+Status ListDelete(SqList &L, int i, ElementType &e);
+void OutList(SqList L);
+Status InitList_Char(SqList_Char &L);
+Status ListEmpty_Char(SqList_Char L);
+Status ListInsert_Char(SqList_Char &L, int i, CharElementType e);
+Status ListDelete_Char(SqQueue_Char &L, int i, CharElementType &e);
+void OutList_Char(SqQueue_Char L);
 
 
 // SequenceQueue
@@ -80,9 +142,31 @@ Status Pop_Char(SqStack_Char &S, CharElementType &e);
 Status GetTop_Char(SqStack_Char &S, CharElementType &e);
 
 
+// LinkedList
+// Singly Linked List
+Status InitList_SL(SinglyLinkedList &L);
+Status DestoryList_SL(SinglyLinkedList &L);
+Status  ClearList_SL(SinglyLinkedList &L);
+Status ListEmpty_SL(SinglyLinkedList L);
+int ListLength_SL(SinglyLinkedList L);
+SLNode * Search_SL(SinglyLinkedList L, ElementType e);
+SLNode * NextElement_SL(SLNode * p);
+SLNode * MakeNode_SL(ElementType e);
+Status InsertAfter_SL(SLNode * p, SLNode * q);
+Status DeleteAfter_SL(SLNode * p, ElementType &e);
+Status ListInsert_SL(SinglyLinkedList &SL, int i, ElementType e);
+Status ListDelete_SL(SinglyLinkedList &SL, int i, ElementType &e);
+Status CreateList_SL(SinglyLinkedList &SL);
+Status OutList_SL(SinglyLinkedList L);
+void InverseList_SL(SinglyLinkedList SL);
+void MergeList_SL(SinglyLinkedList &SLa, SinglyLinkedList &SLb, SinglyLinkedList &SLc);
+
+
 // Methods of LinearDataStructure
+void manipulateSequenceList();
 void manipulateSequenceStack();
 void manipulateSequenceQueue();
+void manipulateSinglyLinkedList();
 Status bracketMatch(char * expression, int n);
 void decimalConversion();
 void arrange(SqQueue_Char A, SqQueue_Char &B, SqQueue_Char &C);

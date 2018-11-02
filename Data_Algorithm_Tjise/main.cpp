@@ -4,7 +4,8 @@
 int main() {
 
 //    manipulateSequenceQueue();
-    carriageArrange();
+//    carriageArrange();
+    manipulateSinglyLinkedList();
 
     return 0;
 }

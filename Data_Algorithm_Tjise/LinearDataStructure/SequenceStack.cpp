@@ -43,7 +43,7 @@ Status Pop(SqStack &S, ElementType &e) {
         S.top--;
         e = S.base[S.top];
     } else {
-        printf("已经到栈底啦!\n");
+        printf("Already reach the bottom of the stack !\n");
     }
 
     return OK;
@@ -54,7 +54,7 @@ void OutStack(SqStack S) {
     ElementType e;
 
     if (StackEmpty(S) == TRUE) {
-        printf("这是一个空栈!\n");
+        printf("This is a empty stack !\n");
     } else {
         while (StackEmpty(S) == FALSE) {
             Pop(S, e);
