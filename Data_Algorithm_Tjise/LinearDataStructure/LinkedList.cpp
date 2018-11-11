@@ -5,6 +5,9 @@
 #include "LinearDataStructure.h"
 
 Status InitList_SL(SinglyLinkedList &SL) {
+    /**
+     * Create the head Node of the Singly Linked List
+     */
     if ((SL = (SLNode *) malloc((sizeof(SLNode)))) == nullptr)
         return OVERFLOW;
     SL->next = nullptr;
@@ -77,6 +80,11 @@ SLNode * NextElement_SL(SLNode * p) {
 
 
 SLNode * MakeNode_SL(ElementType e) {
+    /**
+     * Create a SLNode with element e
+     * @arg e an Integer
+     * @return a SLNode with element e and NULL next
+     */
     SLNode * p;
     p = (SLNode *) malloc(sizeof(SLNode));
     if (p != nullptr) {
@@ -113,12 +121,19 @@ Status DeleteAfter_SL(SLNode * node, ElementType &e) {
 Status ListInsert_SL(SinglyLinkedList &SL, int i, ElementType e){
     /**
      * Insert e before i in SL
+     * @arg SL a SNL
+     * @arg i the address to be inserted
+     * @arg e the integer to be inserted
+     * @return return OK if success else ERROR
      */
     SLNode * node = SL;
     for (int j = 1; j < i; ++j) {
         node = node->next;
     }
-    InsertAfter_SL(node, MakeNode_SL(e));
+    if (node == nullptr) {
+        return ERROR;
+    } else
+        InsertAfter_SL(node, MakeNode_SL(e));
 
     return OK;
 }
@@ -128,6 +143,8 @@ Status ListDelete_SL(SinglyLinkedList &SL, int i, ElementType &e) {
     /**
      * Delete the ith element in SL
      * Assignment the value deleted to e
+     * @arg i the address to be inserted
+     * @arg e the deleted element
      */
 
     if (SL->next == nullptr) {
@@ -156,9 +173,9 @@ Status CreateList_SL(SinglyLinkedList &SL) {
     if (InitList_SL(SL) == OVERFLOW) return OVERFLOW;
     tail = SL;
 
-    printf("Please input the length of the linked list: ");
+    printf("请输入要创建的链表的长度: ");
     scanf("%d", &n);
-    printf("Please input %d int type elements: ", n);
+    printf("请输入%d个整数: ", n);
     for (int i = 0; i < n; i++) {
         scanf("%d", &element);
         tempNode = MakeNode_SL(element);

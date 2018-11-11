@@ -27,8 +27,11 @@ typedef int ElementType;
 typedef char CharElementType;
 typedef int Status;
 
-
-// SequenceList Node in int
+/**
+ * For structured data type, store int type element default
+ * Store char type element if end with _Char
+ * The char type element is declared with CharElementType
+ */
 typedef struct {
     ElementType * element;
     int length;
@@ -36,7 +39,6 @@ typedef struct {
     int increment;
 } SqList;
 
-// SequenceList Node in char
 typedef struct {
     CharElementType * element;
     int length;
@@ -44,7 +46,6 @@ typedef struct {
     int increment;
 } SqList_Char;
 
-// SequenceStack Node in int
 typedef struct {
     ElementType * base;
     int top;
@@ -52,7 +53,6 @@ typedef struct {
     int increment;
 } SqStack;
 
-// SequenceStack Node in char
 typedef struct {
     CharElementType * base;
     int top;
@@ -60,7 +60,6 @@ typedef struct {
     int increment;
 } SqStack_Char;
 
-// SequenceQueue Node in int
 typedef struct {
     ElementType * element;
     int front;
@@ -68,7 +67,6 @@ typedef struct {
     int maxSize;
 } SqQueue;
 
-// SequenceQueue Node in char
 typedef struct {
     CharElementType * element;
     int front;
@@ -76,26 +74,22 @@ typedef struct {
     int maxSize;
 } SqQueue_Char;
 
-// SinglyLinkedList Node in int
 typedef struct SLNode {
     ElementType data;
     struct SLNode * next;
 } SLNode, * SinglyLinkedList;
 
-// SinglyLinkedList Node in char
 typedef struct SLNode_Char {
     CharElementType data;
     struct SLNode_Char * next;
 } SLNode_Char, * SinglyLinkedList_Char;
 
-// DoublyLinkedList Node in int
 typedef struct DLNode {
     ElementType data;
     struct DLNode * previous;
     struct DLNode * next;
 } DLNode, * DoublyLinkedList;
 
-// DoublyLinkedList Node in char
 typedef struct DLNode_Char {
     CharElementType data;
     struct DLNode_Char * previous;
@@ -112,8 +106,8 @@ void OutList(SqList L);
 Status InitList_Char(SqList_Char &L);
 Status ListEmpty_Char(SqList_Char L);
 Status ListInsert_Char(SqList_Char &L, int i, CharElementType e);
-Status ListDelete_Char(SqQueue_Char &L, int i, CharElementType &e);
-void OutList_Char(SqQueue_Char L);
+Status ListDelete_Char(SqList_Char &L, int i, CharElementType &e);
+void OutList_Char(SqList_Char L);
 
 
 // SequenceQueue
