@@ -33,7 +33,7 @@ class Tree:
 
     def num_children(self, p):
         """Return the number of children that Position has."""
-        raise NotImplementedError('Must be implemented at subclass.')
+        raise NotImplementedError('Must be implemented at subclass.')  
 
     def children(self, p):
         """Generate an iteration of Position representing p's children."""
@@ -113,7 +113,8 @@ class Tree:
                 p = fringe.dequeue()              # removing from the front of the queue
                 yield p                                  # report this position
                 for c in self.children(p):
-                    fringe.enqueue(c)               # add children to back of the queue
+                    # add children to back of the queue
+                    fringe.enqueue(c)
 
 
 class BinaryTree(Tree):
@@ -193,7 +194,7 @@ class LinkedBinaryTree(BinaryTree):
 
     def _return_node(self, p):
         """Return associated node if position is valid.
-        
+
         Else raise proper Error.
         """
         if not isinstance(p, self.Position):
@@ -334,9 +335,11 @@ def preorder_indent(tree, p, d):
 
 def preorder_label(tree, p, d, path):
     """Print labeled representation of subtree of tree rooted at p at depth d."""
-    label = '.'.join(str(j+1) for j in path)        # displayed labels are one-indexed
+    label = '.'.join(str(j+1)
+                     for j in path)        # displayed labels are one-indexed
     print(2 * d * '    ' + label, p.element())
-    path.append(0)                                      # path entries are zero-indexed
+    # path entries are zero-indexed
+    path.append(0)
     for c in tree.children(p):
         preorder_label(tree, c, d+1, path)        # child depth is d+1
         path[-1] += 1
@@ -349,7 +352,8 @@ def parenthesize(tree, p):
     if not tree.is_leaf(p):
         first_time = True
         for c in tree.children(p):
-            sep = ' (' if first_time else ', '      # determine proper separator
+            # determine proper separator
+            sep = ' (' if first_time else ', '
             print(sep, end=' ')
             first_time = False  # any future passes will not be the first
             parenthesize(tree, c)   # recur on child
@@ -362,4 +366,3 @@ def disk_space(tree, p):
     for c in tree.children(p):
         subtotal += disk_space(tree, c)
     return subtotal
-

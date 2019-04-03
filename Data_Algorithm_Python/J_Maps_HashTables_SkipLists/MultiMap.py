@@ -13,7 +13,7 @@ class MultiMap(object):
         self._n = 0
 
     def __iter__(self):
-        for k, secondary in self._map._items():
+        for k, secondary in self._map.items():
             for v in secondary:
                 yield k, v
 
