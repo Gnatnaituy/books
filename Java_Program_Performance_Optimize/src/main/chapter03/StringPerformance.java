@@ -31,7 +31,7 @@ public class StringPerformance {
     }
 
     static class HugeStr {
-        private String str = new String(new char[100000]);
+        private final String str = new String(new char[100000]);
 
         public String getSubString(int begin, int end) {
             return str.substring(begin, end);
@@ -39,7 +39,7 @@ public class StringPerformance {
     }
 
     static class ImprovedHugeStr {
-        private String str = new String(new char[100000]);
+        private final String str = new String(new char[100000]);
 
         public String getSubString(int begin, int end) {
             return new String(str.substring(begin, end));

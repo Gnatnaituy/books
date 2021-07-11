@@ -12,4 +12,5 @@ __pycache__/
 .nohup
 cmake-build-debug/
 out/
+target/
 

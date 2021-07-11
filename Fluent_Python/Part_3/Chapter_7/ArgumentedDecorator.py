@@ -1,13 +1,15 @@
 registry = set()
 
+
 def register(active=True):
     def decorate(func):
-        print('running register(active=%s) -> decorate(%s)' %(active, func))
+        print('running register(active=%s) -> decorate(%s)' % (active, func))
         if active:
             registry.add(func)
         else:
             registry.discard(func)
         return func
+
     return decorate
 
 
@@ -24,4 +26,4 @@ def f2():
 if __name__ == '__main__':
     f1()
     f2()
-
+    print(len(registry))
