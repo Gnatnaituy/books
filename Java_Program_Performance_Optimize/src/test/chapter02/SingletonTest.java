@@ -8,6 +8,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SingletonTest implements Runnable {
 
@@ -20,6 +23,8 @@ public class SingletonTest implements Runnable {
         System.out.println("Cost time: " + (System.currentTimeMillis() - beginTime) + " ms");
 
         testSerSingleton();
+
+        System.out.println(String.join(",", "123", "12312", "q2312"));
     }
 
     @Override
@@ -31,7 +36,7 @@ public class SingletonTest implements Runnable {
     }
 
     public static void testSerSingleton() throws Exception {
-        SerSingleton s1 = null;
+        SerSingleton s1;
         SerSingleton s = SerSingleton.getInstance();
 
         FileOutputStream fos = new FileOutputStream("SerSingleton.txt");
